@@ -16,8 +16,8 @@ public class Carrinho {
     private ItemDeCompra item;
     private List<ItemDeCompra> itens = new ArrayList<>();
 
-    public void print(){
-        for (ItemDeCompra item : itens){
+    public void imprimirCarrinho(){
+        for (ItemDeCompra item : itens){ // FEITO!!!
             System.out.println("Nome: " + item.getProduto().getNome()
                     + ", Código: " + item.getProduto().getCodigo()
                     + ", Quantidade: " + item.getQuantidade()
@@ -37,18 +37,18 @@ public class Carrinho {
         }
     }
 
-    public void eliminar(ItemDeCompra item){
-        itens.remove(item);
+    public void eliminar(ItemDeCompra item){ // Pelo diagrama o parâmetro é um Produto
+        itens.remove(item.getProduto()); // Ajustar
     }
 
-    public double calcularTotal(){
+    public double calcularTotal(){ // FEITO!!! MAS É NECESSÁRIO AJUSTES
         for (ItemDeCompra item : itens){
             valorTotal += item.getProduto().getPreco() * item.getQuantidade();
         }
         return valorTotal;
     }
 
-    public ItemDeCompra buscarItem(Produto prod) {
+    public ItemDeCompra buscarItem(Produto prod) { // REFATORAR A LÓGICA, PELO VISTO DEVERÁ SER UTILIZADO NO CATALOGO 
         String nomeProduto = prod.getNome();
         if (itens.contains(prod)){
             return itens.get(itens.indexOf(prod));
