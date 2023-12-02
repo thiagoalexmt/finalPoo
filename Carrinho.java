@@ -27,18 +27,16 @@ public class Carrinho {
     }
 
     public void adicionar(Produto prod, int qtd){
-        for (ItemDeCompra item : itens){
-            if (item.getProduto().getNome() == prod.getNome()){
-                System.out.println("Item já existente em seu carrinho");
-            } else {
-                ItemDeCompra itemComprado = new ItemDeCompra(prod, qtd);
-                itens.add(itemComprado);
-            }
-        }
+        itens.add(new ItemDeCompra(prod, qtd));
     }
 
-    public void eliminar(ItemDeCompra item){
-        itens.remove(item);
+
+    public void eliminar(Produto prod){
+        for (ItemDeCompra item : itens){
+            if (item.getProduto() == prod){
+                itens.remove(item);
+            }
+        }
     }
 
     public double calcularTotal(){
